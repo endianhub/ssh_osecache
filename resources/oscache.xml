@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oscache="http://www.springmodules.org/schema/oscache"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springmodules.org/schema/oscache 
+http://www.springmodules.org/schema/cache/springmodules-oscache.xsd">
+
+
+	<oscache:config configLocation="classpath:oscache.properties"
+		id="cacheProvider" />
+
+	<oscache:annotations providerId="cacheProvider">
+		<oscache:caching id="testCaching" groups="pb_test"
+			cronExpression="0 1 * * *" refreshPeriod="86400" />
+		<oscache:flushing id="testFlushing" groups="pb_test" />
+	</oscache:annotations>
+
+	<bean id="testCache" class="com.TestCache" />
+
+</beans>
